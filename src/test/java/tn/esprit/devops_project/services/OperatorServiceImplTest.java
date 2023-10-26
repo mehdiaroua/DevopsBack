@@ -42,14 +42,14 @@ class OperatorServiceImplTest {
     @DatabaseSetup("/data-set/operator-data.xml")
     void addOperator() {
         Operator operator = new Operator();
-        operator.setFname("hamma");
+        operator.setFname("mehdi");
         operatorService.addOperator(operator);
 
         final List<Operator> allOperators = this.operatorService.retrieveAllOperators();
         assertEquals(2, allOperators.size());
 
         final Operator operateur = this.operatorService.retrieveOperator(2L);
-        assertEquals("hamma", operateur.getFname());
+        assertEquals("mehdi", operateur.getFname());
     }
 
     @Test
@@ -74,7 +74,7 @@ class OperatorServiceImplTest {
     @DatabaseSetup("/data-set/operator-data.xml")
     void retrieveOperator() {
         final Operator operateur = this.operatorService.retrieveOperator(1L);
-        assertEquals("mohamed", operateur.getFname());
+        assertEquals("mahdi", operateur.getFname());
     }
 
     @Test
