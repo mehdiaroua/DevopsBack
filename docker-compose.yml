@@ -23,8 +23,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mahdi
       MYSQL_DATABASE: devops
-    volumes: # Add this section to define a volume
+    volumes:
       - mysql_data:/var/lib/mysql
 
-volumes: # Define the named volume
+volumes:
   mysql_data:
