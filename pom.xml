@@ -43,12 +43,8 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
 
-        <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>org.jacoco.agent</artifactId>
-            <version>0.8.7</version>
-            <scope>test</scope>
-        </dependency>
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -149,5 +145,11 @@
             </plugins>
         </pluginManagement>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>deploymentRepo</id>
+            <name>Nexus Repository</name>
+            <url>http://192.168.33.10:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
