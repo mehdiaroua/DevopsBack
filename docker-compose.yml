@@ -12,7 +12,7 @@ services:
   frontend:
     image: mahdiaroua72/angular-app
     ports:
-      - 80:80
+      - 9090:80
     environment:
       BACKEND_URL: http://backend:8081
 
