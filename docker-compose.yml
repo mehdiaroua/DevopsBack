@@ -1,0 +1,30 @@
+version: '3'
+services:
+  backend:
+    image: mahdiaroua72/spring-app
+    ports:
+      - 8081:8081
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: # Specify your password here
+
+  frontend:
+    image: mahdiaroua72/angular-app
+    ports:
+      - 80:80
+    environment:
+      BACKEND_URL: http://backend:8081
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3333:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mahdi
+      MYSQL_DATABASE: devops
+    volumes: # Add this section to define a volume
+      - mysql_data:/var/lib/mysql
+
+volumes: # Define the named volume
+  mysql_data:
