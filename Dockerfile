@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
-COPY target/DevOps_Project-1.0.jar /app/app.jar
-EXPOSE 8081
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM openjdk:8
+COPY target/DevOps_Project-1.0.jar.jar .
+EXPOSE 8085
+ENTRYPOINT ["java","-jar","DevOps_Project-1.0.jar"]
