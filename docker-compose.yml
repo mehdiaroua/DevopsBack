@@ -1,30 +1,33 @@
-version: '3'
+version: "3.8"
 services:
-  backend:
-    image: mahdiaroua72/spring-app
+  mysqldb:
+    container_name: mysqldb
+    image: "mysql:latest"
+    restart: always
     ports:
-      - 8081:8081
+      - 3308:3306
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: # Specify your password here
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=devops
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true
+      - spring.datasource.username=root
+      - spring.datasource.password=
+      - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+      - jpa.hibernate.ddl-auto=update
+      - jpa.show-sql=true
+      - jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
 
-  frontend:
-    image: mahdiaroua72/angular-app
+  cours:
+    build: ./DevopsBack
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true
+      - spring.datasource.username=root
+      - spring.datasource.password=
+      - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+      - spring.jpa.show-sql=true
+      - spring.jpa.hibernate.ddl-auto=update
     ports:
-      - 9090:80
-    environment:
-      BACKEND_URL: http://backend:8081
-
-  mysql:
-    image: mysql:latest
-    ports:
-      - 3333:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: mahdi
-      MYSQL_DATABASE: devops
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-volumes:
-  mysql_data:
+      - 8082:8082
+    image: spring-app
+    depends_on:
+      - mysqldb
