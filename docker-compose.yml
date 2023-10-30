@@ -16,9 +16,11 @@ services:
       - jpa.hibernate.ddl-auto=update
       - jpa.show-sql=true
       - jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+    volumes:
+      - mysql_data:/var/lib/mysql
 
-  cours:
-    build: ./
+  backend:
+    image: spring-app
     environment:
       - spring.datasource.url=jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true
       - spring.datasource.username=root
@@ -28,6 +30,13 @@ services:
       - spring.jpa.hibernate.ddl-auto=update
     ports:
       - 8082:8082
-    image: spring-app
+
+  angular-app:
+    image: angular-app
+    ports:
+      - "80:80"
     depends_on:
-      - mysqldb
+      - backend
+
+volumes:
+  mysql_data:  # Define a named volume for MySQL data
