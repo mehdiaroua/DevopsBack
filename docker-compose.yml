@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mysql-db:
+  mysql_db:
     image: mysql:latest
     container_name: mysqldb
     ports:
@@ -13,27 +13,27 @@ services:
       - ./data.sql:/docker-entrypoint-initdb.d/data.sql
     networks:
       - my-network
-  spring-boot-app:
+  spring_boot_app:
     image: mahdiaroua72/spring
     container_name: devops_project_spring
     ports:
       - "8082:8082"
     restart: always
     depends_on:
-      - mysqldb
+      - mysql_db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/devops?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_db:3306/devops?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=
     networks:
       - my-network
-  angular-app:
+  angular_app:
     image: mahdiaroua72/angular-app
     container_name: devops_project_angular
     ports:
       - "4200:80"
     depends_on:
-      - spring-boot-app
+      - spring_boot_app
     networks:
       - my-network
 networks:
