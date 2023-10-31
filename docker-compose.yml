@@ -28,12 +28,12 @@ services:
       - spring.jpa.hibernate.ddl-auto=update
     ports:
       - 8082:8082
-    image: spring-app
+    image: spring-ap
     depends_on:
       - mysqldb
 
   angular-app:
-    image: mahdiaroua72/angular-app:latest
+    image: mahdiaroua72/angular-ap:latest
     ports:
       - 8083:80  # Adjust the port as needed
     depends_on:
