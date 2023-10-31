@@ -20,7 +20,7 @@ services:
       - "8082:8082"
     restart: always
     depends_on:
-      - mysql-db
+      - mysqldb
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/devops?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
