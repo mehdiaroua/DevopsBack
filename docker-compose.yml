@@ -1,40 +1,40 @@
-version: "3.8"
+version: '3'
 services:
-  mysqldb:
+  mysql-db:
+    image: mysql:latest
     container_name: mysqldb
-    image: "mysql:latest"
+    ports:
+      - "3306:3306"
     restart: always
-    ports:
-      - 3308:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=devops
-      - spring.datasource.url=jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true
-      - spring.datasource.username=root
-      - spring.datasource.password=root
-      - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-      - jpa.hibernate.ddl-auto=update
-      - jpa.show-sql=true
-      - jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
-
-  backend:
-    build: ./
-    environment:
-      - spring.datasource.url=jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true
-      - spring.datasource.username=root
-      - spring.datasource.password=root
-      - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-      - spring.jpa.show-sql=true
-      - spring.jpa.hibernate.ddl-auto=update
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=devops_project_db
+    volumes:
+      - ./data.sql:/docker-entrypoint-initdb.d/data.sql
+    networks:
+      - my-network
+  spring-boot-app:
+    image: mahdiaroua72/spring-application
+    container_name: devops_project_spring
     ports:
-      - 8082:8082
-    image: spring-ap
+      - "8082:8082"
+    restart: always
     depends_on:
-      - mysqldb
-
+      - mysql-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/devops_project_db?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    networks:
+      - my-network
   angular-app:
-    image: mahdiaroua72/angular-ap:latest
+    image: mahdiaroua72/angular-application
+    container_name: devops_project_angular
     ports:
-      - 8083:80  # Adjust the port as needed
+      - "4200:80"
     depends_on:
-      - backend  # This ensures that Angular app depends on the Spring Boot app
+      - spring-boot-app
+    networks:
+      - my-network
+networks:
+  my-network:
