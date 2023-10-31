@@ -35,6 +35,6 @@ services:
   angular-app:
     image: mahdiaroua72/angular-app:latest
     ports:
-      - 80:80  # Adjust the port as needed
+      - 8083:80  # Adjust the port as needed
     depends_on:
       - backend  # This ensures that Angular app depends on the Spring Boot app
