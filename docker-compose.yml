@@ -43,5 +43,12 @@ services:
       - "9090:9090"
     networks:
       - my-network
+   grafana:
+    image: mahdiaroua72/grafana
+    container_name: grafana
+    ports:
+      - "9090:9090"
+    networks:
+      - my-network
 networks:
   my-network:
