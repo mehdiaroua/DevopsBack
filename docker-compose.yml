@@ -14,8 +14,8 @@ services:
     networks:
       - my-network
   spring_boot_app:
-    image: mahdiaroua72/springg
-    container_name: devops_project_spring
+    image: mahdiaroua72/springapp
+    container_name: devops_project_springg
     ports:
       - "8082:8082"
     restart: always
