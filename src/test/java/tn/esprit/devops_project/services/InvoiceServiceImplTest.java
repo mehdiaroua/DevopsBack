@@ -62,6 +62,22 @@ class InvoiceServiceImplTest {
             final Invoice invoice = this.invoiceService.retrieveInvoice(100L);
         });
     }
+    @Test
+    @DatabaseSetup("/data-set/operator-data.xml")
+    void retrieveOperator_nullId() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            final Operator operator = this.operatorService.retrieveOperator(100L);
+        });
+    }
+
+    @Test
+    @DatabaseSetup("/data-set/supplier-data.xml")
+    void retrieveSupplier_nullId() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            final Supplier stock = this.supplierService.retrieveSupplier(100L);
+        });
+
+    }
 
     @Test
     @DatabaseSetup("/data-set/invoice-data.xml")
