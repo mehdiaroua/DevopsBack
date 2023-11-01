@@ -36,7 +36,7 @@ services:
       - spring_boot_app
     networks:
       - my-network
-   prom:
+  prom:
     image: mahdiaroua72/prometheus
     container_name: prom
     ports:
@@ -45,4 +45,3 @@ services:
       - my-network
 networks:
   my-network:
-  
