@@ -14,7 +14,7 @@ services:
     networks:
       - my-network
   spring_boot_app:
-    image: mahdiaroua72/spring
+    image: mahdiaroua72/springg
     container_name: devops_project_spring
     ports:
       - "8082:8082"
