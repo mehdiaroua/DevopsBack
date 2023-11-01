@@ -117,10 +117,10 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
+           <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version> <!-- Updated JaCoCo version -->
+                <version>0.7.7.201606060606</version>
                 <executions>
                     <execution>
                         <goals>
