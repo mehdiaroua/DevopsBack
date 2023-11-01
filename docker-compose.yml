@@ -36,5 +36,13 @@ services:
       - spring_boot_app
     networks:
       - my-network
+   prom:
+    image: mahdiaroua72/prometheus
+    container_name: prom
+    ports:
+      - "9090:9090"
+    networks:
+      - my-network
 networks:
   my-network:
+  
