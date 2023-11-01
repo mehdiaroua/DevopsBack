@@ -43,11 +43,11 @@ services:
       - "9090:9090"
     networks:
       - my-network
-   grafana:
+  grafana:
     image: mahdiaroua72/grafana
     container_name: grafana
     ports:
-      - "9090:9090"
+      - "3000:3000"  # Assuming you want to expose Grafana on port 3000
     networks:
       - my-network
 networks:
