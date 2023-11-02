@@ -15,36 +15,37 @@ public class InvoiceController {
 
     IInvoiceService invoiceService;
 
+
     @GetMapping(&quot;/invoice&quot;)
     public List&lt;Invoice&gt; getInvoices() {
-<span class="nc" id="L20">       return invoiceService.retrieveAllInvoices();</span>
+<span class="nc" id="L21">       return invoiceService.retrieveAllInvoices();</span>
     }
 
     @GetMapping(&quot;/invoice/{invoiceId}&quot;)
     public Invoice retrieveInvoice(@PathVariable Long invoiceId) {
-<span class="nc" id="L25">        return invoiceService.retrieveInvoice(invoiceId);</span>
+<span class="nc" id="L26">        return invoiceService.retrieveInvoice(invoiceId);</span>
     }
 
     @PutMapping(&quot;/invoice/{invoiceId}&quot;)
     public void cancelInvoice(@PathVariable Long invoiceId) {
-<span class="nc" id="L30">        invoiceService.cancelInvoice(invoiceId);</span>
-<span class="nc" id="L31">    }</span>
+<span class="nc" id="L31">        invoiceService.cancelInvoice(invoiceId);</span>
+<span class="nc" id="L32">    }</span>
 
     @GetMapping(&quot;/invoice/supplier/{supplierId}&quot;)
     public List&lt;Invoice&gt; getInvoicesBySupplier(@PathVariable Long supplierId) {
-<span class="nc" id="L35">        return invoiceService.getInvoicesBySupplier(supplierId);</span>
+<span class="nc" id="L36">        return invoiceService.getInvoicesBySupplier(supplierId);</span>
     }
 
     @PutMapping(value = &quot;/invoice/operator/{idOperator}/{idInvoice}&quot;)
     public void assignOperatorToInvoice(@PathVariable Long idOperator,@PathVariable Long idInvoice) {
-<span class="nc" id="L40">        invoiceService.assignOperatorToInvoice(idOperator, idInvoice);</span>
-<span class="nc" id="L41">    }</span>
+<span class="nc" id="L41">        invoiceService.assignOperatorToInvoice(idOperator, idInvoice);</span>
+<span class="nc" id="L42">    }</span>
 
     @GetMapping(&quot;/invoice/price/{startDate}/{endDate}&quot;)
     public float getTotalAmountInvoiceBetweenDates(@PathVariable Date startDate,@PathVariable Date endDate){
-<span class="nc" id="L45">        return invoiceService.getTotalAmountInvoiceBetweenDates(startDate, endDate);</span>
+<span class="nc" id="L46">        return invoiceService.getTotalAmountInvoiceBetweenDates(startDate, endDate);</span>
     }
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
