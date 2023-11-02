@@ -14,8 +14,8 @@ services:
     networks:
       - my-network
   spring_boot_app:
-    image: mahdiaroua72/spring
-    container_name: devops_project_spring
+    image: mahdiaroua72/springappp
+    container_name: devops_project_springg
     ports:
       - "8082:8082"
     restart: always
@@ -34,6 +34,20 @@ services:
       - "4200:80"
     depends_on:
       - spring_boot_app
+    networks:
+      - my-network
+  prom:
+    image: mahdiaroua72/prometheus
+    container_name: prom
+    ports:
+      - "9090:9090"
+    networks:
+      - my-network
+  grafana:
+    image: mahdiaroua72/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"  # Assuming you want to expose Grafana on port 3000
     networks:
       - my-network
 networks:
